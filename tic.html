@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Tic-tac-toe</title>
+</head>
+<body>
+	
+	<section style="margin-top: 15%;" id="game">
+		<div style="display: grid;grid-template-columns: 85px 85px 85px;justify-content: center;align-items: center;" id="old">
+			<input type="text" name="" readonly="" id="one" onclick="put(one)" class="few">
+			<input type="text" name="" readonly="" id="two" onclick="put(two)" class="few">
+			<input type="text" name="" readonly="" id="three" onclick="put(three)" class="few">
+			<input type="text" name="" readonly="" id="four" onclick="put(four)" class="few">
+			<input type="text" name="" readonly="" id="five" onclick="put(five)" class="few">
+			<input type="text" name="" readonly="" id="six" onclick="put(six)" class="few">
+			<input type="text" name="" readonly="" id="seven" onclick="put(seven)" class="few">
+			<input type="text" name="" readonly="" id="eight" onclick="put(eight)" class="few">
+			<input type="text" name="" readonly="" id="nine" onclick="put(nine)" class="few">
+		</div>
+		
+		<div style="display: flex;flex-direction: column;align-items: center;justify-content: center;">
+		<h3 style="text-align: center;font-size: 45px;font-family: millik;color: #000;" id="winner">X turn</h3>
+		<button id="dope" style="width: 145px;height: 69px;background-color: #000;color: #fff;display: none;font-size: 19px;animation: fade 1s linear infinite alternate;border-radius: 15px;border: 3px solid #fff;" onclick="clean()">Play again!</button>
+	</div>
+	</section>
+</body>
+</html>
+<style type="text/css">
+	body{
+		background: #23a6d5;
+	}
+	
+	input{
+		width: 85px;
+		height: 85px;
+		border: 2px ridge black;
+		margin: 0;
+		outline: none;
+		font-size: 35px;
+		font-style: bold;
+		font-family: sans-serif;
+		text-align: center;
+		padding: 0;
+		overflow: hidden;
+		user-select: none;
+		cursor: pointer;
+	}
+	input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+         margin: 0;
+	}
+	#old{
+		animation: fades 2s linear;
+	}
+	@keyframes fade{
+		from{
+			background: rgba(39, 39, 39, 1);
+		}
+		to{
+			background: rgba(39, 39, 39, .6);
+		}
+	}
+	.few:disabled{
+		background-color: #212;
+		color: #fff;
+		border: 2px ridge #fff;
+	}
+</style>
+<script type="text/javascript">
+
+	var one = document.getElementById('one');
+	var two = document.getElementById('two');
+	var three = document.getElementById('three');
+	var four = document.getElementById('four');
+	var five = document.getElementById('five');
+	var six = document.getElementById('six');
+	var seven = document.getElementById('seven');
+	var eight = document.getElementById('eight');
+	var nine = document.getElementById('nine');
+	var letter = ["O", "X", "O", "X", "O", "X", "O", "X", "O", "X"]
+	var i;
+	let win;
+	let lose;
+	lose = "O";
+	win = "X";
+	i = 0;
+	function put(id) {
+
+		    i += 1
+			hid = letter[i];
+			id.value = hid;
+			id.disabled = true;
+
+			if (id.value == "O") {
+			document.getElementById('winner').innerHTML = "X turn";
+			}
+			else{
+				document.getElementById('winner').innerHTML = "O turn";
+			}
+			deep();
+	}			
+	function deep() {
+	if (one.value === win && two.value === win && three.value === win)
+		{
+			document.getElementById('winner').innerHTML = "X wins this round";
+			document.getElementById('dope').style.display = "block";
+			document.getElementById('old').style.opacity = "1";
+			trash(one, two, three);
+	}
+	else if (six.value === win && four.value === win && five.value === win) {
+		document.getElementById('winner').innerHTML = "X wins this round";
+			document.getElementById('dope').style.display = "block";
+			document.getElementById('old').style.opacity = "1";
+			trash(four, five, six)
+	}
+	else if (one.value === win && four.value === win && seven.value === win) {
+		document.getElementById('winner').innerHTML = "X wins this round";
+			document.getElementById('dope').style.display = "block";
+			document.getElementById('old').style.opacity = "1";
+			trash(one, four, seven)
+	}
+	else if (two.value === win && eight.value === win && five.value === win) {
+		document.getElementById('winner').innerHTML = "X wins this round";
+			document.getElementById('dope').style.display = "block";
+			document.getElementById('old').style.opacity = "1";
+			trash(two, five, eight)
+	}
+	else if (six.value === win && three.value === win && nine.value === win) {
+		document.getElementById('winner').innerHTML = "X wins this round";
+			document.getElementById('dope').style.display = "block";
+			document.getElementById('old').style.opacity = "1";
+			trash(three, six, nine)
+	}
+	else if (seven.value === win && eight.value === win && nine.value === win) {
+		document.getElementById('winner').innerHTML = "X wins this round";
+			document.getElementById('dope').style.display = "block";
+			document.getElementById('old').style.opacity = "1";
+			trash(seven, eigth, nine)
+	}
+	else if (one.value === win && five.value === win && nine.value === win) {
+		document.getElementById('winner').innerHTML = "X wins this round";
+			document.getElementById('dope').style.display = "block";
+			document.getElementById('old').style.opacity = "1";
+			trash(one, five, nine)
+	}
+	else if (three.value === win && seven.value === win && five.value === win) {
+		document.getElementById('winner').innerHTML = "X wins this round";
+			document.getElementById('dope').style.display = "block";
+			document.getElementById('old').style.opacity = "1";
+			trash(three, five, seven)
+	}
+	else if (one.value === lose && two.value === lose && three.value === lose)
+		{
+			document.getElementById('winner').innerHTML = "O wins this round";
+			document.getElementById('dope').style.display = "block";
+			document.getElementById('old').style.opacity = "1";
+			trash(one, two, three)
+	}
+	else if (six.value === lose && four.value === lose && five.value === lose) {
+		document.getElementById('winner').innerHTML = "O wins this round";
+			document.getElementById('dope').style.display = "block";
+			document.getElementById('old').style.opacity = "1";
+			trash(four, five, six)
+	}
+	else if (one.value === lose && four.value === lose && seven.value === lose) {
+		document.getElementById('winner').innerHTML = "O wins this round";
+			document.getElementById('dope').style.display = "block";
+			document.getElementById('old').style.opacity = "1";
+			trash(one, four, seven)
+	}
+	else if (two.value === lose && eight.value === lose && five.value === lose) {
+		document.getElementById('winner').innerHTML = "O wins this round";
+			document.getElementById('dope').style.display = "block";
+			document.getElementById('old').style.opacity = "1";
+			trash(two, eight, five)
+	}
+	else if (six.value === lose && three.value === lose && nine.value === lose) {
+		document.getElementById('winner').innerHTML = "O wins this round";
+			document.getElementById('dope').style.display = "block";
+			document.getElementById('old').style.opacity = "1";
+			trash(six, three, nine)
+	}
+	else if (seven.value === lose && eight.value === lose && nine.value === lose) {
+		document.getElementById('winner').innerHTML = "O wins this round";
+			document.getElementById('dope').style.display = "block";
+			document.getElementById('old').style.opacity = "1";
+			trash(seven, eight, nine)
+	}
+	else if (one.value === lose && five.value === lose && nine.value === lose) {
+		document.getElementById('winner').innerHTML = "O wins this round";
+			document.getElementById('dope').style.display = "block";
+			document.getElementById('old').style.opacity = "1";
+			trash(one, five, nine)
+	}
+	else if (three.value === lose && seven.value === lose && five.value === lose) {
+		document.getElementById('winner').innerHTML = "O wins this round";
+			document.getElementById('dope').style.display = "block";
+			document.getElementById('old').style.opacity = "1";
+			trash(three, five, seven)
+	}
+	else if(one.value != "" && two.value != "" && three.value != "" && four.value != "" && five.value != "" && six.value != "" && seven.value != "" && eight.value != "" && nine.value != ""){
+		document.getElementById('winner').innerHTML = "Nobody won this round";
+			document.getElementById('dope').style.display = "block";
+	}
+}
+
+	function clean() {
+		window.location.replace('tic.html');
+	}
+	function trash(a, b, c) {
+		one.disabled = true;
+		two.disabled = true;
+		three.disabled = true;
+		four.disabled = true;
+		five.disabled = true;
+		six.disabled = true;
+		seven.disabled = true;
+		eight.disabled = true;
+		nine.disabled = true;
+		a.style.background = "#06f506";
+		a.style.color = "black";
+		b.style.background = "#06f506";
+		b.style.color = "black";
+		c.style.background = "#06f506";
+		c.style.color = "black";
+	}
+
+</script>
